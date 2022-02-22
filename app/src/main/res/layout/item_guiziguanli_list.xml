@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="29pt"
+        android:layout_marginBottom="19pt"
+        android:background="@drawable/bg_white_shadow"
+        android:orientation="vertical"
+        android:padding="19pt">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="设备编号：aaaaaaaaaaaa000010150018"
+            android:textColor="@color/color_2"
+            android:textSize="27pt"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="柜子名称："
+                android:textColor="@color/color_2"
+                android:textSize="27pt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="柜子1"
+                android:textColor="@color/color_8"
+                android:textSize="27pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="柜子地址："
+                android:textColor="@color/color_2"
+                android:textSize="27pt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="哈尔滨道里区112号11"
+                android:textColor="@color/color_8"
+                android:textSize="27pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="启用状态："
+                android:textColor="@color/color_2"
+                android:textSize="27pt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="在线"
+                android:textColor="@color/color_8"
+                android:textSize="27pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="在线状态："
+                android:textColor="@color/color_2"
+                android:textSize="27pt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="在线"
+                android:textColor="@color/color_8"
+                android:textSize="27pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="箱子数量："
+                android:textColor="@color/color_2"
+                android:textSize="27pt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="1"
+                android:textColor="@color/color_8"
+                android:textSize="27pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15pt"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/bt_xiangzixiugai"
+                android:layout_width="144pt"
+                android:layout_height="58pt"
+                android:layout_marginRight="19pt"
+                android:background="@drawable/bt_list_xiugai"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="箱子修改"
+                android:textColor="@color/color_blue"
+                android:textSize="27pt" />
+
+            <TextView
+                android:id="@+id/bt_xiangzixiangqing"
+                android:layout_width="144pt"
+                android:layout_height="58pt"
+                android:background="@drawable/bt_list_xiangqing"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="箱子详情"
+                android:textColor="#22AC38"
+                android:textSize="27pt" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

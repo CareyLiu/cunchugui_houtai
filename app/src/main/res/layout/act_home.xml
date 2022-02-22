@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="497pt"
+                android:background="@mipmap/app_banner"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60pt"
+                    android:background="#33000000"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="23pt"
+                    android:text="您有新消息，请尽快处理！"
+                    android:textColor="@color/white"
+                    android:textSize="29pt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="29pt">
+
+                <LinearLayout
+                    android:id="@+id/ll_guiziguanli"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_guiziguanli" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="柜子管理"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll_shoufeiguanli"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_shoufeiguanli" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="收费管理"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="29pt">
+
+                <LinearLayout
+                    android:id="@+id/ll_guanliyuan"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_guanliyuan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="管理员管理"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll_shiyongjilu"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_shiyongjilu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="使用记录"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="29pt">
+
+                <LinearLayout
+                    android:id="@+id/ll_dingdanjilu"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_dingdanjilu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="订单记录"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll_wodeshouyi"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/home_icon_wodeshouyi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="我的收益"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

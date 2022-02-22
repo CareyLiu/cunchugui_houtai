@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.cunchugui.houtai"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -21,6 +21,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        //解决编译时com.android.builder.merge.DuplicateRelativeFileException: More than one file was found with OS independent path 'META-INF/rxjava.properties'这个错误
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
@@ -32,7 +41,36 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // 基础依赖包，必须要依赖
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.gyf.immersionbar:immersionbar:2.3.3'
+    implementation 'com.google.code.gson:gson:2.8.2'
 
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    // 此处以JCore 2.4.2 版本为例。
+    implementation 'com.bulong.rudeness:rudeness:latest.release@aar'
+
+    //RecyclerView的强大的BaseAdapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+
+    /*Rx*/
+    implementation 'com.trello:rxlifecycle:0.3.0'
+    implementation 'com.trello:rxlifecycle-components:0.3.0'
+    /*Rx生命周期管理*/
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.0'
+
+    implementation 'me.yokeyword:fragmentationx:1.0.2'
+    implementation 'me.yokeyword:fragmentationx-swipeback:1.0.2'
+
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding-support-v4:0.3.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.3.0'
 }
