@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:srlTextSizeTime="10sp"
+            app:srlTextSizeTitle="12sp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="71pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginTop="10pt">
+
+                    <TextView
+                        android:id="@+id/bt_shoufei"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bt_zu_left_sel"
+                        android:gravity="center"
+                        android:text="收费策略管理"
+                        android:textColor="@color/white"
+                        android:textSize="27pt" />
+
+                    <TextView
+                        android:id="@+id/bt_baoyue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bt_zu_right"
+                        android:gravity="center"
+                        android:text="包月策略管理"
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="71pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginVertical="10pt">
+
+                    <TextView
+                        android:id="@+id/bt_edit_celue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bt_zu_left"
+                        android:gravity="center"
+                        android:text="变更柜子策略"
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+
+                    <TextView
+                        android:id="@+id/bt_add_celue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bt_zu_right"
+                        android:gravity="center"
+                        android:text="新增策略"
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10pt" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_content_baoyue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10pt"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40pt" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlTextSizeTime="10sp"
+            app:srlTextSizeTitle="12sp" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

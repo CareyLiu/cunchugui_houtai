@@ -210,6 +210,31 @@
                         android:textSize="29pt" />
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bt_loginout"
+                android:layout_width="match_parent"
+                android:layout_height="84pt"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="29pt"
+                android:layout_marginBottom="50pt"
+                android:background="@drawable/bg_white_shadow"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="38pt"
+                    android:layout_height="38pt"
+                    android:layout_marginRight="10pt"
+                    android:src="@mipmap/tuichu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_3"
+                    android:text="退出登录"
+                    android:textSize="29pt" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

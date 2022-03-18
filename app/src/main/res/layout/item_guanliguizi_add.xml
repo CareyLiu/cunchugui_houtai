@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="202pt"
+        android:layout_height="134pt"
+        android:layout_marginHorizontal="29pt"
+        android:layout_marginBottom="19pt"
+        android:background="@drawable/bg_white_shadow"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="56pt"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="35pt"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="166pt"
+            android:layout_height="58pt"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_search"
+            android:padding="2pt">
+
+            <Spinner
+                android:id="@+id/sp_xiangzi_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="5pt"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="28pt"
+                android:layout_height="28pt"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="16pt"
+                android:scaleType="fitXY"
+                android:src="@mipmap/down_black" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

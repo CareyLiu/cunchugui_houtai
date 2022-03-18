@@ -73,4 +73,15 @@ dependencies {
     implementation 'com.jakewharton.rxbinding:rxbinding-support-v4:0.3.0'
     implementation 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
     implementation 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.3.0'
+
+    implementation 'io.reactivex:rxandroid:1.0.1'
+    implementation 'io.reactivex:rxjava:1.0.14'
+    implementation 'io.reactivex:rxjava-math:1.0.0'
+
+    /**
+     *    Android智能下拉刷新框架-SmartRefreshLayout
+     *    https://github.com/scwang90/SmartRefreshLayout
+     * */
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5'
 }

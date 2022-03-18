@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="57pt"
+        android:layout_marginTop="200pt"
+        android:includeFontPadding="false"
+        android:text="登录"
+        android:textColor="#2F2F2F"
+        android:textSize="67pt"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="57pt"
+        android:layout_marginTop="10pt"
+        android:includeFontPadding="false"
+        android:text="欢迎再次回来～"
+        android:textColor="@color/color_9"
+        android:textSize="42pt" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="84pt"
+        android:layout_marginHorizontal="72pt"
+        android:layout_marginTop="200pt"
+        android:background="@drawable/login_bg_input"
+        android:gravity="center_vertical"
+        android:paddingLeft="37pt">
+
+        <ImageView
+            android:layout_width="29pt"
+            android:layout_height="29pt"
+            android:src="@mipmap/zhanghao" />
+
+        <EditText
+            android:id="@+id/ed_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入账号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:paddingLeft="37pt"
+            android:textColor="@color/color_9"
+            android:textColorHint="#DDDDDD"
+            android:textSize="27pt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="84pt"
+        android:layout_marginHorizontal="72pt"
+        android:layout_marginTop="20pt"
+        android:background="@drawable/login_bg_input"
+        android:gravity="center_vertical"
+        android:paddingLeft="37pt">
+
+        <ImageView
+            android:layout_width="29pt"
+            android:layout_height="29pt"
+            android:src="@mipmap/zhanghao" />
+
+        <EditText
+            android:id="@+id/ed_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:paddingLeft="37pt"
+            android:textColor="@color/color_9"
+            android:textColorHint="#DDDDDD"
+            android:textSize="27pt" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="84pt"
+        android:layout_marginHorizontal="72pt"
+        android:layout_marginTop="58pt"
+        android:background="@drawable/btn_confirm"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="35pt"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/bt_wangjimima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="20pt"
+        android:text="忘记密码"
+        android:textColor="@color/color_9"
+        android:textSize="27pt" />
+</LinearLayout>

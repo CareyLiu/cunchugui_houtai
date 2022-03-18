@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:srlTextSizeTime="10sp"
+            app:srlTextSizeTitle="12sp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginVertical="19pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:orientation="vertical"
+                    android:padding="19pt">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="58pt"
+                        android:layout_marginTop="22pt"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="18pt"
+                            android:includeFontPadding="false"
+                            android:text="策略名称："
+                            android:textColor="@color/black"
+                            android:textSize="27pt" />
+
+                        <EditText
+                            android:id="@+id/ed_celue_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_search"
+                            android:gravity="center_vertical"
+                            android:hint="请输入新增策略名称"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingLeft="100pt"
+                            android:textColor="@color/black"
+                            android:textSize="27pt" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="33pt"
+                        android:includeFontPadding="false"
+                        android:text="收费方式："
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="19pt"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="29pt"
+                            android:layout_height="29pt"
+                            android:layout_marginRight="10pt"
+                            android:src="@mipmap/xuanzhongkuang" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="按次数收费"
+                            android:textColor="@color/color_3"
+                            android:textSize="27pt" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15pt"
+                        android:layout_marginRight="100pt"
+                        android:includeFontPadding="false"
+                        android:text="默认按次收费（所有类型默认值都为1元)更改费用可新增后修改。"
+                        android:textColor="#8A8A8A"
+                        android:textSize="23pt" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18pt"
+                        android:includeFontPadding="false"
+                        android:text="择需要绑定该策略的柜子："
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="38pt"
+                            android:includeFontPadding="false"
+                            android:text="**"
+                            android:textColor="@color/color_red"
+                            android:textSize="23pt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="若柜子已存在收费策略，将删除原有的收费策略。"
+                            android:textColor="#8A8A8A"
+                            android:textSize="23pt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/bt_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="84pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:background="@drawable/btn_confirm"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="35pt" />
+
+                <TextView
+                    android:id="@+id/bt_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="84pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginTop="19pt"
+                    android:background="@drawable/btn_cancel"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/black"
+                    android:textSize="35pt" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40pt" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlTextSizeTime="10sp"
+            app:srlTextSizeTitle="12sp" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

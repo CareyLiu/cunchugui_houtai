@@ -116,19 +116,7 @@ public abstract class BasicActivity<T extends BasicPresenter, E extends BasicMod
         if (showToolBar() && getToolBarResId() != -1) {
             //如果需要显示自定义toolbar,并且资源id存在的情况下，实例化baseView;
             rootView = LayoutInflater.from(this).inflate(toolbarCover() ? R.layout.basic_toolbar_cover : R.layout.basic_layout, null, false);//根布局
-            if (rootView == null) {
-                Y.e("rootView是空的啊啊啊");
-            } else {
-                Y.e("rootView有数据啊啊啊");
-            }
-
             ViewStub mVs_toolbar = rootView.findViewById(R.id.vs_toolbar);//toolbar容器
-            if (mVs_toolbar == null) {
-                Y.e("mVs_toolbar是空的啊啊啊");
-            } else {
-                Y.e("mVs_toolbar有数据啊啊啊");
-            }
-
             FrameLayout fl_container = rootView.findViewById(R.id.fl_container);//子布局容器
             mVs_toolbar.setLayoutResource(getToolBarResId());//toolbar资源id
             mVs_toolbar.inflate();//填充toolbar

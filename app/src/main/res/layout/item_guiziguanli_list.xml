@@ -13,6 +13,7 @@
         android:padding="19pt">
 
         <TextView
+            android:id="@+id/device_ccid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
@@ -36,6 +37,7 @@
                 android:textSize="27pt" />
 
             <TextView
+                android:id="@+id/device_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -59,6 +61,7 @@
                 android:textSize="27pt" />
 
             <TextView
+                android:id="@+id/device_addr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -82,6 +85,7 @@
                 android:textSize="27pt" />
 
             <TextView
+                android:id="@+id/device_state_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -105,6 +109,7 @@
                 android:textSize="27pt" />
 
             <TextView
+                android:id="@+id/online_state_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
@@ -128,6 +133,7 @@
                 android:textSize="27pt" />
 
             <TextView
+                android:id="@+id/boxes_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
