@@ -6,8 +6,6 @@
     <LinearLayout
         android:layout_width="202pt"
         android:layout_height="134pt"
-        android:layout_marginHorizontal="29pt"
-        android:layout_marginBottom="19pt"
         android:background="@drawable/bg_white_shadow"
         android:orientation="vertical">
 

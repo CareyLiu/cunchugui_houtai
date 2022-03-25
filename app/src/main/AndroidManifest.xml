@@ -116,9 +116,18 @@
             android:windowSoftInputMode="adjustPan|stateHidden"
             tools:ignore="LockedOrientationActivity" />
 
-        <!--    新增收费策略    -->
+        <!--    新增包月策略    -->
         <activity
             android:name=".activity.ShoufeiBaoyueAddActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+
+
+        <!--    变更包月策略    -->
+        <activity
+            android:name=".activity.ShoufeiEditBaoyueActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"

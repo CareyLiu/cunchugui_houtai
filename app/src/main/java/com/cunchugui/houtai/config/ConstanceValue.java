@@ -8,5 +8,6 @@ public interface ConstanceValue {
     int MSG_REFRESH_XIANGZI_LIST = 0x10000;//刷新箱子列表
     int MSG_REFRESH_CELUE_LIST = 0x10001;//刷新策略列表
     int MSG_REFRESH_GUANLIYUAN_LIST = 0x10003;//刷新管理员列表
+    int MSG_SET_GUANLIYUAN_QUANXIAN = 0x10004;//设置管理员权限
 
 }

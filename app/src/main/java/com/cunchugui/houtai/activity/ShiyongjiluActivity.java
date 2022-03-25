@@ -158,9 +158,7 @@ public class ShiyongjiluActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("user_phone", searchText);
-        map.put("device_addr", searchText);
-        map.put("device_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<ShiyongModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -197,9 +195,7 @@ public class ShiyongjiluActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("user_phone", searchText);
-        map.put("device_addr", searchText);
-        map.put("device_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<ShiyongModel.DataBean>>post(MAIN_URL)
                 .tag(this)//

@@ -156,7 +156,7 @@
                 android:background="@drawable/bt_list_xiugai"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="箱子修改"
+                android:text="柜子修改"
                 android:textColor="@color/color_blue"
                 android:textSize="27pt" />
 
@@ -167,7 +167,7 @@
                 android:background="@drawable/bt_list_xiangqing"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:text="箱子详情"
+                android:text="柜子详情"
                 android:textColor="#22AC38"
                 android:textSize="27pt" />
         </LinearLayout>

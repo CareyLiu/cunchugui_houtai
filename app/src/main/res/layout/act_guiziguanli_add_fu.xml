@@ -2,126 +2,137 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_app"
-    android:orientation="vertical">
+    android:background="@color/bg_app">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="29pt"
-        android:layout_marginTop="19pt"
-        android:background="@drawable/bg_white_shadow"
-        android:orientation="vertical"
-        android:padding="19pt">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="58pt"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="18pt">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="18pt"
-                android:includeFontPadding="false"
-                android:text="锁板规格："
-                android:textColor="@color/black"
-                android:textSize="27pt" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_search">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="19pt"
+                android:background="@drawable/bg_white_shadow"
+                android:orientation="vertical"
+                android:padding="19pt">
 
-                <Spinner
-                    android:id="@+id/sp_suoban_guige"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    android:layout_height="58pt"
                     android:gravity="center_vertical"
-                    android:paddingHorizontal="5pt"
-                    android:paddingVertical="2pt"
-                    android:spinnerMode="dropdown" />
+                    android:paddingHorizontal="18pt">
 
-                <ImageView
-                    android:layout_width="28pt"
-                    android:layout_height="28pt"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="18pt"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/down_black" />
-            </RelativeLayout>
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="18pt"
+                        android:includeFontPadding="false"
+                        android:text="锁板规格："
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="58pt"
-            android:layout_marginTop="22pt"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="18pt">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_search">
+
+                        <Spinner
+                            android:id="@+id/sp_suoban_guige"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="5pt"
+                            android:paddingVertical="2pt"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="28pt"
+                            android:layout_height="28pt"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="18pt"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/down_black" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58pt"
+                    android:layout_marginTop="22pt"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="18pt">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="18pt"
+                        android:includeFontPadding="false"
+                        android:text="锁板数量："
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+
+                    <EditText
+                        android:id="@+id/ed_suoban_shuliang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_search"
+                        android:gravity="center_vertical"
+                        android:inputType="number"
+                        android:paddingLeft="100pt"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="27pt" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18pt"
+                    android:layout_marginTop="37pt"
+                    android:includeFontPadding="false"
+                    android:text="箱子数量&amp;规格"
+                    android:textColor="@color/black"
+                    android:textSize="27pt" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="18pt"
-                android:includeFontPadding="false"
-                android:text="锁板数量："
-                android:textColor="@color/black"
-                android:textSize="27pt" />
-
-            <EditText
-                android:id="@+id/ed_suoban_shuliang"
+                android:id="@+id/bt_confirm"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_search"
-                android:gravity="center_vertical"
-                android:paddingLeft="100pt"
-                android:text="1"
+                android:layout_height="84pt"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="36pt"
+                android:background="@drawable/btn_confirm"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="35pt" />
+
+            <TextView
+                android:id="@+id/bt_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="84pt"
+                android:layout_marginHorizontal="29pt"
+                android:layout_marginTop="19pt"
+                android:layout_marginBottom="20pt"
+                android:background="@drawable/btn_cancel"
+                android:gravity="center"
+                android:text="取消"
                 android:textColor="@color/black"
-                android:textSize="27pt" />
+                android:textSize="35pt" />
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18pt"
-            android:layout_marginTop="37pt"
-            android:includeFontPadding="false"
-            android:text="箱子数量&amp;规格"
-            android:textColor="@color/black"
-            android:textSize="27pt" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/bt_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="84pt"
-        android:layout_marginHorizontal="29pt"
-        android:layout_marginTop="36pt"
-        android:background="@drawable/btn_confirm"
-        android:gravity="center"
-        android:text="确定"
-        android:textColor="@color/white"
-        android:textSize="35pt" />
-
-    <TextView
-        android:id="@+id/bt_cancel"
-        android:layout_width="match_parent"
-        android:layout_height="84pt"
-        android:layout_marginHorizontal="29pt"
-        android:layout_marginTop="19pt"
-        android:layout_marginBottom="20pt"
-        android:background="@drawable/btn_cancel"
-        android:gravity="center"
-        android:text="取消"
-        android:textColor="@color/black"
-        android:textSize="35pt" />
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -80,11 +80,11 @@ public class GuiziAddDanActivity extends BaseActivity {
     /**
      * 用于其他Activty跳转到该Activity
      */
-    public static void actionStart(Context context,String device_ccid) {
+    public static void actionStart(Context context, String device_ccid) {
         Intent intent = new Intent();
         intent.setClass(context, GuiziAddDanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("device_ccid",device_ccid);
+        intent.putExtra("device_ccid", device_ccid);
         context.startActivity(intent);
     }
 
@@ -92,7 +92,7 @@ public class GuiziAddDanActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-         device_ccid = getIntent().getStringExtra("device_ccid");
+        device_ccid = getIntent().getStringExtra("device_ccid");
         getXiangziList();
     }
 

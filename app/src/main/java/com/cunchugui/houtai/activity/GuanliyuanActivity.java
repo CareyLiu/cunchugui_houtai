@@ -21,8 +21,10 @@ import com.cunchugui.houtai.config.ConstanceValue;
 import com.cunchugui.houtai.config.net.AppResponse;
 import com.cunchugui.houtai.config.net.Urls;
 import com.cunchugui.houtai.config.net.callback.JsonCallback;
+import com.cunchugui.houtai.dialog.GuanliyuanDialog;
 import com.cunchugui.houtai.dialog.TishiDialog;
 import com.cunchugui.houtai.model.GuanliyuanModel;
+import com.cunchugui.houtai.model.GuanliyuanQuanxianModel;
 import com.cunchugui.houtai.utils.Y;
 import com.cunchugui.houtai.utils.user.UserManager;
 import com.google.gson.Gson;
@@ -64,6 +66,7 @@ public class GuanliyuanActivity extends BaseActivity {
     private GuanliyuanAdapter adapter;
     private int page_number;
     private String searchText;
+    private String lc_user_id;
 
     @Override
     public int getContentViewResId() {
@@ -156,9 +159,44 @@ public class GuanliyuanActivity extends BaseActivity {
             public void call(Notice message) {
                 if (message.type == ConstanceValue.MSG_REFRESH_GUANLIYUAN_LIST) {
                     getData();
+                } else if (message.type == ConstanceValue.MSG_SET_GUANLIYUAN_QUANXIAN) {
+                    String ccid = (String) message.content;
+                    setQuanxian(ccid);
                 }
             }
         }));
+    }
+
+    private void setQuanxian(String ccid) {
+        showProgressDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("code", "110028");
+        map.put("key", Urls.key);
+        map.put("token", UserManager.getManager(mContext).getAppToken());
+        map.put("lc_user_id", lc_user_id);
+        map.put("cabinets", ccid);
+        Gson gson = new Gson();
+        OkGo.<AppResponse<GuanliyuanModel.DataBean>>post(MAIN_URL)
+                .tag(this)//
+                .upJson(gson.toJson(map))
+                .execute(new JsonCallback<AppResponse<GuanliyuanModel.DataBean>>() {
+                    @Override
+                    public void onSuccess(Response<AppResponse<GuanliyuanModel.DataBean>> response) {
+                        Y.t("修改成功");
+                    }
+
+                    @Override
+                    public void onError(Response<AppResponse<GuanliyuanModel.DataBean>> response) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissProgressDialog();
+                    }
+                });
+
     }
 
     private void initSM() {
@@ -188,8 +226,7 @@ public class GuanliyuanActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("user_phone", searchText);
-        map.put("lc_user_name",searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<GuanliyuanModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -225,8 +262,7 @@ public class GuanliyuanActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("user_phone", searchText);
-        map.put("lc_user_name",searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<GuanliyuanModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -276,60 +312,42 @@ public class GuanliyuanActivity extends BaseActivity {
     }
 
     private void clickXiugai(int position) {
-//        GuanliyuanModel.DataBean model = guanliyuanModels.get(position);
-//        GuanliGuiziDialog dialog = new GuanliGuiziDialog(mContext);
-//        dialog.setmListener(new GuanliGuiziDialog.GuanliGuiziListener() {
-//            @Override
-//            public void onClickConfirm(GuanliGuiziDialog dialog) {
-//                xiugai(position, dialog.getModel());
-//            }
-//
-//            @Override
-//            public void onClickCancel(GuanliGuiziDialog dialog) {
-//            }
-//
-//            @Override
-//            public void onDismiss(GuanliGuiziDialog dialog) {
-//
-//            }
-//        });
-//        dialog.setModel(model);
-//        dialog.showBottom();
+        GuanliyuanModel.DataBean dataBean = guanliyuanModels.get(position);
+        lc_user_id = dataBean.getLc_user_id();
+        showProgressDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("code", "110029");
+        map.put("key", Urls.key);
+        map.put("token", UserManager.getManager(mContext).getAppToken());
+        map.put("inst_id", UserManager.getManager(mContext).getInstId());
+        map.put("lc_user_id", dataBean.getLc_user_id());
+        Gson gson = new Gson();
+        OkGo.<AppResponse<GuanliyuanQuanxianModel.DataBean>>post(MAIN_URL)
+                .tag(this)//
+                .upJson(gson.toJson(map))
+                .execute(new JsonCallback<AppResponse<GuanliyuanQuanxianModel.DataBean>>() {
+                    @Override
+                    public void onSuccess(Response<AppResponse<GuanliyuanQuanxianModel.DataBean>> response) {
+                        List<GuanliyuanQuanxianModel.DataBean> data = response.body().data;
+                        xiugai(position, data);
+                    }
+
+                    @Override
+                    public void onError(Response<AppResponse<GuanliyuanQuanxianModel.DataBean>> response) {
+                        Y.tError(response);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissProgressDialog();
+                    }
+                });
     }
 
-    private void xiugai(int position, GuanliyuanModel.DataBean model) {
-//        showProgressDialog();
-//        Map<String, String> map = new HashMap<>();
-//        map.put("code", "110002");
-//        map.put("key", Urls.key);
-//        map.put("token", UserManager.getManager(mContext).getAppToken());
-//        map.put("device_ccid", model.getDevice_ccid());
-//        map.put("device_name", model.getDevice_name());
-//        map.put("device_addr", model.getDevice_addr());
-//        map.put("lc_state", model.getLc_state());
-//        Gson gson = new Gson();
-//        OkGo.<AppResponse<GuanliyuanModel.DataBean>>post(MAIN_URL)
-//                .tag(this)//
-//                .upJson(gson.toJson(map))
-//                .execute(new JsonCallback<AppResponse<GuanliyuanModel.DataBean>>() {
-//                    @Override
-//                    public void onSuccess(Response<AppResponse<GuanliyuanModel.DataBean>> response) {
-//                        guanliyuanModels.set(position, model);
-//                        adapter.setNewData(guanliyuanModels);
-//                        adapter.notifyDataSetChanged();
-//                    }
-//
-//                    @Override
-//                    public void onError(Response<AppResponse<GuanliyuanModel.DataBean>> response) {
-//                        Y.tError(response);
-//                    }
-//
-//                    @Override
-//                    public void onFinish() {
-//                        super.onFinish();
-//                        dismissProgressDialog();
-//                    }
-//                });
+    private void xiugai(int position, List<GuanliyuanQuanxianModel.DataBean> data) {
+        GuanliyuanDialog dialog = new GuanliyuanDialog(mContext, data);
+        dialog.showBottom();
     }
 
     private void clickDelete(int position) {

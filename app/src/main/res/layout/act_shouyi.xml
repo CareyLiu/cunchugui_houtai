@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48pt"
@@ -60,11 +61,143 @@
                         android:textSize="19pt" />
                 </LinearLayout>
 
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200pt"
-                    android:layout_marginHorizontal="29pt"
-                    android:background="@drawable/bg_white_shadow" />
+                    android:layout_height="46pt"
+                    android:layout_marginHorizontal="20pt"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nian"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="今年总收益"
+                        android:textColor="@color/color_shouyi"
+                        android:textSize="23pt" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC" />
+
+                    <TextView
+                        android:id="@+id/tv_liugeyue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="近6个月收益"
+                        android:textColor="@color/color_9"
+                        android:textSize="23pt" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC" />
+
+                    <TextView
+                        android:id="@+id/tv_sanshitian"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="一个月总收益"
+                        android:textColor="@color/color_9"
+                        android:textSize="23pt" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC" />
+
+                    <TextView
+                        android:id="@+id/tv_qitian"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="一周总收益"
+                        android:textColor="@color/color_9"
+                        android:textSize="23pt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="46pt"
+                    android:layout_marginHorizontal="20pt"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nian2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="今年总收益"
+                        android:textColor="@color/color_shouyi"
+                        android:textSize="23pt" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tv_liugeyue2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="近6个月收益"
+                        android:textColor="@color/color_shouyi"
+                        android:textSize="23pt"
+                        android:visibility="invisible" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tv_sanshitian2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="一个月总收益"
+                        android:textColor="@color/color_shouyi"
+                        android:textSize="23pt"
+                        android:visibility="invisible" />
+
+                    <View
+                        android:layout_width="1pt"
+                        android:layout_height="19pt"
+                        android:background="#BCBCBC"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tv_qitian2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="一周总收益"
+                        android:textColor="@color/color_shouyi"
+                        android:textSize="23pt"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+
+                <com.lwz.chart.hellocharts.view.LineChartView
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="320pt"
+                    android:layout_marginHorizontal="20pt" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -122,7 +255,7 @@
                         android:gravity="center_vertical"
                         android:hint="搜索用户手机号"
                         android:imeOptions="actionSearch"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:paddingLeft="12pt"
                         android:textColor="@color/color_3"
                         android:textColorHint="#BEBEBE"

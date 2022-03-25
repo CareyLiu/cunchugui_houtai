@@ -18,179 +18,137 @@
             android:layout_marginTop="28pt"
             android:layout_marginBottom="22pt"
             android:includeFontPadding="false"
-            android:text="修改"
+            android:text="修改包月收费"
             android:textColor="@color/color_3"
             android:textSize="35pt"
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/ll_xiaoxiang_money"
             android:layout_width="match_parent"
             android:layout_height="58pt"
+            android:layout_marginTop="22pt"
             android:gravity="center_vertical"
-            android:paddingHorizontal="36pt">
+            android:paddingHorizontal="36pt"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="18pt"
                 android:includeFontPadding="false"
-                android:text="箱子名称："
+                android:text="小　箱："
                 android:textColor="@color/black"
                 android:textSize="27pt" />
 
             <EditText
-                android:id="@+id/ed_xiangzi_name"
-                android:layout_width="match_parent"
+                android:id="@+id/ed_xiaoxiang_money"
+                android:layout_width="0dp"
                 android:layout_height="58pt"
+                android:layout_weight="1"
                 android:background="@drawable/bg_search"
                 android:gravity="center_vertical"
+                android:hint="金额(元)"
+                android:inputType="numberDecimal"
                 android:paddingLeft="100pt"
-                android:text="柜子名称"
                 android:textColor="@color/black"
                 android:textSize="27pt" />
         </LinearLayout>
 
+
         <LinearLayout
+            android:id="@+id/ll_zhongxiang_money"
             android:layout_width="match_parent"
             android:layout_height="58pt"
             android:layout_marginTop="22pt"
             android:gravity="center_vertical"
-            android:paddingHorizontal="36pt">
+            android:paddingHorizontal="36pt"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="18pt"
                 android:includeFontPadding="false"
-                android:text="箱子尺寸："
+                android:text="中　箱："
                 android:textColor="@color/black"
                 android:textSize="27pt" />
 
             <EditText
-                android:id="@+id/ed_xiangzi_chicun"
+                android:id="@+id/ed_zhongxiang_money"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_search"
                 android:gravity="center_vertical"
+                android:hint="金额(元)"
+                android:inputType="numberDecimal"
                 android:paddingLeft="100pt"
-                android:text="30*30*30"
                 android:textColor="@color/black"
                 android:textSize="27pt" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_daxiang_money"
             android:layout_width="match_parent"
             android:layout_height="58pt"
             android:layout_marginTop="22pt"
             android:gravity="center_vertical"
-            android:paddingHorizontal="36pt">
+            android:paddingHorizontal="36pt"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="18pt"
                 android:includeFontPadding="false"
-                android:text="锁地址：　"
+                android:text="大　箱："
                 android:textColor="@color/black"
                 android:textSize="27pt" />
 
             <EditText
-                android:id="@+id/ed_xiangzi_suodizhi"
+                android:id="@+id/ed_daxiang_money"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_search"
                 android:gravity="center_vertical"
+                android:hint="金额(元)"
+                android:inputType="numberDecimal"
                 android:paddingLeft="100pt"
-                android:text="0101"
                 android:textColor="@color/black"
                 android:textSize="27pt" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_biaozhunxiang_money"
             android:layout_width="match_parent"
             android:layout_height="58pt"
             android:layout_marginTop="22pt"
             android:gravity="center_vertical"
-            android:paddingHorizontal="36pt">
+            android:paddingHorizontal="36pt"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="18pt"
                 android:includeFontPadding="false"
-                android:text="箱子类型："
+                android:text="标准箱："
                 android:textColor="@color/black"
                 android:textSize="27pt" />
 
-            <RelativeLayout
+            <EditText
+                android:id="@+id/ed_biaozhunxiang_money"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_search">
-
-                <Spinner
-                    android:id="@+id/sp_xiangzi_leixing"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="5pt"
-                    android:paddingVertical="2pt"
-                    android:spinnerMode="dropdown" />
-
-                <ImageView
-                    android:layout_width="28pt"
-                    android:layout_height="28pt"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="18pt"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/down_black" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="58pt"
-            android:layout_marginTop="22pt"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="36pt">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="18pt"
-                android:includeFontPadding="false"
-                android:text="禁用状态："
+                android:background="@drawable/bg_search"
+                android:gravity="center_vertical"
+                android:hint="金额(元)"
+                android:inputType="numberDecimal"
+                android:paddingLeft="100pt"
                 android:textColor="@color/black"
                 android:textSize="27pt" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_search">
-
-                <Spinner
-                    android:id="@+id/sp_xiangzi_state"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="5pt"
-                    android:paddingVertical="2pt"
-                    android:spinnerMode="dropdown" />
-
-                <ImageView
-                    android:layout_width="28pt"
-                    android:layout_height="28pt"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="18pt"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/down_black" />
-            </RelativeLayout>
         </LinearLayout>
+
 
         <TextView
             android:id="@+id/bt_confirm"

@@ -161,8 +161,7 @@ public class GuiziguanliActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("device_ccid", searchText);
-        map.put("device_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<GuanliListModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -199,8 +198,7 @@ public class GuiziguanliActivity extends BaseActivity {
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
         map.put("subsystem_id", UserManager.getManager(mContext).getSubsystemId());
         map.put("page_number", page_number + "");
-        map.put("device_ccid", searchText);
-        map.put("device_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<GuanliListModel.DataBean>>post(MAIN_URL)
                 .tag(this)//

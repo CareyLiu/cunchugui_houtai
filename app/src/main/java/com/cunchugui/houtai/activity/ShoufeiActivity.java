@@ -18,8 +18,13 @@ import com.cunchugui.houtai.config.ConstanceValue;
 import com.cunchugui.houtai.config.net.AppResponse;
 import com.cunchugui.houtai.config.net.Urls;
 import com.cunchugui.houtai.config.net.callback.JsonCallback;
+import com.cunchugui.houtai.dialog.GuanliXiangziDialog;
+import com.cunchugui.houtai.dialog.ShoufeibaoyueDialog;
+import com.cunchugui.houtai.dialog.ShoufeidanDialog;
 import com.cunchugui.houtai.dialog.TishiDialog;
+import com.cunchugui.houtai.model.CelueBaoyueDetailsModel;
 import com.cunchugui.houtai.model.CelueBaoyueModel;
+import com.cunchugui.houtai.model.CelueDetailsModel;
 import com.cunchugui.houtai.model.CelueListModel;
 import com.cunchugui.houtai.utils.Y;
 import com.cunchugui.houtai.utils.user.UserManager;
@@ -142,7 +147,11 @@ public class ShoufeiActivity extends BaseActivity {
             @Override
             public void call(Notice message) {
                 if (message.type == ConstanceValue.MSG_REFRESH_CELUE_LIST) {
-                    getData();
+                    if (isBaoyue) {
+                        getDataBaoyue();
+                    } else {
+                        getData();
+                    }
                 }
             }
         }));
@@ -165,14 +174,13 @@ public class ShoufeiActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Response<AppResponse<CelueListModel.DataBean>> response) {
                         danciListModels = response.body().data;
-                        Y.e("我是多少啊啊啊啊啊" + danciListModels.size());
                         danciAdapter.setNewData(danciListModels);
                         danciAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(Response<AppResponse<CelueListModel.DataBean>> response) {
-                        Y.e("开了房间都是反倒是愧疚反倒是");
+
                     }
 
                     @Override
@@ -322,7 +330,7 @@ public class ShoufeiActivity extends BaseActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.bt_xiangzixiugai:
-                        clickXiugai(position);
+                        clickXiugaiBaoyue(position);
                         break;
                     case R.id.bt_xiangzixiangqing:
                         clickDelete(position);
@@ -342,15 +350,33 @@ public class ShoufeiActivity extends BaseActivity {
                 selectBaoyue();
                 break;
             case R.id.bt_edit_celue:
-                ShoufeiEditActivity.actionStart(mContext, danciListModels);
+                clickEdit();
                 break;
             case R.id.bt_add_celue:
-                ShoufeiAddActivity.actionStart(mContext);
+                clickAdd();
                 break;
         }
     }
 
+    private void clickEdit() {
+        if (isBaoyue) {
+            ShoufeiEditBaoyueActivity.actionStart(mContext);
+        } else {
+            ShoufeiEditActivity.actionStart(mContext);
+        }
+
+    }
+
+    private void clickAdd() {
+        if (isBaoyue) {
+            ShoufeiBaoyueAddActivity.actionStart(mContext);
+        } else {
+            ShoufeiAddActivity.actionStart(mContext);
+        }
+    }
+
     private void selectShoufei() {
+        isBaoyue = false;
         showProgressDialog();
         bt_shoufei.setTextColor(Color.WHITE);
         bt_shoufei.setBackgroundResource(R.drawable.bt_zu_left_sel);
@@ -365,6 +391,7 @@ public class ShoufeiActivity extends BaseActivity {
     }
 
     private void selectBaoyue() {
+        isBaoyue = true;
         showProgressDialog();
         bt_shoufei.setTextColor(Color.BLACK);
         bt_shoufei.setBackgroundResource(R.drawable.bt_zu_left);
@@ -380,25 +407,155 @@ public class ShoufeiActivity extends BaseActivity {
 
 
     private void clickXiugai(int position) {
-//        GuanliXiangziDialog dialog = new GuanliXiangziDialog(mContext);
-//        dialog.setmListener(new GuanliXiangziDialog.GuanliXiangziListener() {
-//            @Override
-//            public void onClickCancel(View v, GuanliXiangziDialog dialog) {
-//
-//            }
-//
-//            @Override
-//            public void onClickConfirm(View v, GuanliXiangziDialog dialog) {
-//
-//            }
-//
-//            @Override
-//            public void onDismiss(GuanliXiangziDialog dialog) {
-//
-//            }
-//        });
-//        dialog.showBottom();
+        showProgressDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("code", "110042");
+        map.put("lccs_id", danciListModels.get(position).getLccs_id());
+        map.put("key", Urls.key);
+        map.put("token", UserManager.getManager(mContext).getAppToken());
+        Gson gson = new Gson();
+        OkGo.<AppResponse<CelueDetailsModel.DataBean>>post(MAIN_URL)
+                .tag(this)//
+                .upJson(gson.toJson(map))
+                .execute(new JsonCallback<AppResponse<CelueDetailsModel.DataBean>>() {
+                    @Override
+                    public void onSuccess(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+                        List<CelueDetailsModel.DataBean> list = response.body().data;
+                        shoufeiXiugai(list);
+                    }
+
+                    @Override
+                    public void onError(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+                        Y.tError(response);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissProgressDialog();
+                    }
+                });
     }
+
+    private void shoufeiXiugai(List<CelueDetailsModel.DataBean> list) {
+        ShoufeidanDialog dialog = new ShoufeidanDialog(mContext, list);
+        dialog.setmListener(new ShoufeidanDialog.XiugaiListener() {
+            @Override
+            public void onClickConfirm(ShoufeidanDialog dialog, Map<String, String> map) {
+                showProgressDialog();
+                map.put("code", "110011");
+                Gson gson = new Gson();
+                OkGo.<AppResponse<CelueDetailsModel.DataBean>>post(MAIN_URL)
+                        .tag(this)//
+                        .upJson(gson.toJson(map))
+                        .execute(new JsonCallback<AppResponse<CelueDetailsModel.DataBean>>() {
+                            @Override
+                            public void onSuccess(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+
+                            }
+
+                            @Override
+                            public void onError(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+                                Y.tError(response);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                super.onFinish();
+                                dismissProgressDialog();
+                            }
+                        });
+            }
+
+            @Override
+            public void onClickCancel(ShoufeidanDialog dialog) {
+
+            }
+
+            @Override
+            public void onDismiss(ShoufeidanDialog dialog) {
+
+            }
+        });
+        dialog.showBottom();
+    }
+
+    private void clickXiugaiBaoyue(int position) {
+        showProgressDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("code", "110044");
+        map.put("lms_id", baoyueListModels.get(position).getLms_id());
+        map.put("key", Urls.key);
+        map.put("token", UserManager.getManager(mContext).getAppToken());
+        Gson gson = new Gson();
+        OkGo.<AppResponse<CelueBaoyueDetailsModel.DataBean>>post(MAIN_URL)
+                .tag(this)//
+                .upJson(gson.toJson(map))
+                .execute(new JsonCallback<AppResponse<CelueBaoyueDetailsModel.DataBean>>() {
+                    @Override
+                    public void onSuccess(Response<AppResponse<CelueBaoyueDetailsModel.DataBean>> response) {
+                        List<CelueBaoyueDetailsModel.DataBean> list = response.body().data;
+                        baoyueXiugai(list);
+                    }
+
+                    @Override
+                    public void onError(Response<AppResponse<CelueBaoyueDetailsModel.DataBean>> response) {
+                        Y.tError(response);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        dismissProgressDialog();
+                    }
+                });
+    }
+
+    private void baoyueXiugai(List<CelueBaoyueDetailsModel.DataBean> list) {
+        ShoufeibaoyueDialog dialog = new ShoufeibaoyueDialog(mContext, list);
+        dialog.setmListener(new ShoufeibaoyueDialog.XiugaiListener() {
+            @Override
+            public void onClickConfirm(ShoufeibaoyueDialog dialog, Map<String, String> map) {
+                showProgressDialog();
+                map.put("code", "110016");
+                Gson gson = new Gson();
+                OkGo.<AppResponse<CelueDetailsModel.DataBean>>post(MAIN_URL)
+                        .tag(this)//
+                        .upJson(gson.toJson(map))
+                        .execute(new JsonCallback<AppResponse<CelueDetailsModel.DataBean>>() {
+                            @Override
+                            public void onSuccess(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+
+                            }
+
+                            @Override
+                            public void onError(Response<AppResponse<CelueDetailsModel.DataBean>> response) {
+                                Y.tError(response);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                super.onFinish();
+                                dismissProgressDialog();
+                            }
+                        });
+            }
+
+            @Override
+            public void onClickCancel(ShoufeibaoyueDialog dialog) {
+
+            }
+
+            @Override
+            public void onDismiss(ShoufeibaoyueDialog dialog) {
+
+            }
+        });
+        dialog.showBottom();
+    }
+
+
+
 
     private void clickDelete(int position) {
         TishiDialog dialog = new TishiDialog(mContext, TishiDialog.TYPE_DELETE, new TishiDialog.TishiDialogListener() {

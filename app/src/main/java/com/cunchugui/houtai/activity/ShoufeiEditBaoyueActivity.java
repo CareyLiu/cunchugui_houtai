@@ -48,7 +48,7 @@ import butterknife.OnClick;
 
 import static com.cunchugui.houtai.config.net.Urls.MAIN_URL;
 
-public class ShoufeiEditActivity extends BaseActivity {
+public class ShoufeiEditBaoyueActivity extends BaseActivity {
 
     @BindView(R.id.sp_shoufei_celue)
     Spinner sp_shoufei_celue;
@@ -82,7 +82,7 @@ public class ShoufeiEditActivity extends BaseActivity {
     @Override
     protected void initToolbar() {
         super.initToolbar();
-        tv_title.setText("变更柜子策略");
+        tv_title.setText("变更包月策略");
     }
 
     /**
@@ -90,7 +90,7 @@ public class ShoufeiEditActivity extends BaseActivity {
      */
     public static void actionStart(Context context) {
         Intent intent = new Intent();
-        intent.setClass(context, ShoufeiEditActivity.class);
+        intent.setClass(context, ShoufeiEditBaoyueActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
@@ -108,7 +108,7 @@ public class ShoufeiEditActivity extends BaseActivity {
 
     private void getData2() {
         Map<String, String> map = new HashMap<>();
-        map.put("code", "110013");
+        map.put("code", "110017");
         map.put("key", Urls.key);
         map.put("token", UserManager.getManager(mContext).getAppToken());
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
@@ -171,7 +171,7 @@ public class ShoufeiEditActivity extends BaseActivity {
 
     private void getData() {
         Map<String, String> map = new HashMap<>();
-        map.put("code", "110009");
+        map.put("code", "110043");
         map.put("key", Urls.key);
         map.put("token", UserManager.getManager(mContext).getAppToken());
         map.put("inst_id", UserManager.getManager(mContext).getInstId());
@@ -252,8 +252,9 @@ public class ShoufeiEditActivity extends BaseActivity {
         map.put("code", "110012");
         map.put("key", Urls.key);
         map.put("token", UserManager.getManager(mContext).getAppToken());
-        map.put("lccs_id", lccs_id);
+        map.put("lms_id", lccs_id);
         map.put("guiIds", guiIds);
+        map.put("type", "2");
         Gson gson = new Gson();
         OkGo.<AppResponse<GuiziCelueModel.DataBean>>post(MAIN_URL)
                 .tag(this)//

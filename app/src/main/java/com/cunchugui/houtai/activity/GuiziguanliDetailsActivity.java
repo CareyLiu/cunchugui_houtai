@@ -172,7 +172,7 @@ public class GuiziguanliDetailsActivity extends BaseActivity {
         map.put("token", UserManager.getManager(mContext).getAppToken());
         map.put("device_ccid", device_ccid);
         map.put("page_number", page_number + "");
-        map.put("device_box_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<XiangziListModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -209,7 +209,7 @@ public class GuiziguanliDetailsActivity extends BaseActivity {
         map.put("token", UserManager.getManager(mContext).getAppToken());
         map.put("device_ccid", device_ccid);
         map.put("page_number", page_number + "");
-        map.put("device_box_name", searchText);
+        map.put("text", searchText);
         Gson gson = new Gson();
         OkGo.<AppResponse<XiangziListModel.DataBean>>post(MAIN_URL)
                 .tag(this)//
@@ -420,7 +420,7 @@ public class GuiziguanliDetailsActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_add_fugui:
-                GuiziAddFuActivity.actionStart(mContext);
+                GuiziAddFuActivity.actionStart(mContext, device_ccid);
                 break;
             case R.id.bt_add_dangui:
                 GuiziAddDanActivity.actionStart(mContext, device_ccid);

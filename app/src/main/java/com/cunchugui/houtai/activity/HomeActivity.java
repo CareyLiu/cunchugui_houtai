@@ -3,12 +3,16 @@ package com.cunchugui.houtai.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.cunchugui.houtai.R;
+import com.cunchugui.houtai.app.AppManager;
 import com.cunchugui.houtai.app.base.BaseActivity;
 import com.cunchugui.houtai.dialog.TishiDialog;
+import com.cunchugui.houtai.utils.Y;
 import com.cunchugui.houtai.utils.user.UserManager;
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -111,5 +115,27 @@ public class HomeActivity extends BaseActivity {
         dialog.setTextContent("退出登录");
         dialog.setTextContent("取消");
         dialog.show();
+    }
+
+    private boolean isExit;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            if (!isExit) {
+                Y.t("再按一次返回键退出");
+                isExit = true;
+                new Thread() {
+                    public void run() {
+                        SystemClock.sleep(3000);
+                        isExit = false;
+                    }
+
+                }.start();
+                return true;
+            }
+            AppManager.getAppManager().finishAllActivity();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

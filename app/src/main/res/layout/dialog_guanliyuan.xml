@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:maxHeight="900pt"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="900pt">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="900pt"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28pt"
+                    android:layout_marginBottom="22pt">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="36pt"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        android:text="可管理的柜子"
+                        android:textColor="@color/color_3"
+                        android:textSize="35pt"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_quanxuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="36pt"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_quanxuan"
+                            android:layout_width="29pt"
+                            android:layout_height="29pt"
+                            android:layout_marginRight="10pt"
+                            android:src="@mipmap/daixuankuang" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="全选"
+                            android:textColor="@color/color_3"
+                            android:textSize="27pt" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="36pt" />
+
+                <TextView
+                    android:id="@+id/bt_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="84pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginTop="18pt"
+                    android:background="@drawable/btn_confirm"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="35pt" />
+
+                <TextView
+                    android:id="@+id/bt_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="84pt"
+                    android:layout_marginHorizontal="29pt"
+                    android:layout_marginTop="19pt"
+                    android:layout_marginBottom="20pt"
+                    android:background="@drawable/btn_cancel"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/black"
+                    android:textSize="35pt" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</LinearLayout>
