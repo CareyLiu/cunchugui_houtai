@@ -15,6 +15,7 @@ import com.cunchugui.houtai.config.net.Urls;
 import com.cunchugui.houtai.config.net.callback.JsonCallback;
 import com.cunchugui.houtai.model.LoginUser;
 import com.cunchugui.houtai.utils.Y;
+import com.cunchugui.houtai.utils.user.PreferenceHelper;
 import com.cunchugui.houtai.utils.user.UserManager;
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
@@ -104,6 +105,7 @@ public class LoginActivity extends BaseActivity {
                         LoginUser.DataBean user = response.body().data.get(0);
                         UserManager.getManager(mContext).saveUser(user);
                         HomeActivity.actionStart(mContext);
+                        PreferenceHelper.getInstance(LoginActivity.this).putString("user_phone",edPhone.getText().toString()+ "");
                     }
 
                     @Override

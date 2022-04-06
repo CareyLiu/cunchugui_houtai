@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.cunchugui.houtai.R;
+import com.cunchugui.houtai.activity.qianbao.MyQianBaoActivity;
 import com.cunchugui.houtai.app.AppManager;
 import com.cunchugui.houtai.app.base.BaseActivity;
 import com.cunchugui.houtai.dialog.TishiDialog;
@@ -65,7 +66,7 @@ public class HomeActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.bt_loginout, R.id.ll_guiziguanli, R.id.ll_shoufeiguanli, R.id.ll_guanliyuan, R.id.ll_shiyongjilu, R.id.ll_dingdanjilu, R.id.ll_wodeshouyi})
+    @OnClick({R.id.bt_loginout, R.id.ll_guiziguanli, R.id.ll_shoufeiguanli, R.id.ll_guanliyuan, R.id.ll_shiyongjilu, R.id.ll_dingdanjilu, R.id.ll_wodeshouyi, R.id.ll_tixianjilu, R.id.ll_fenzhangjilu, R.id.ll_wodeqianbao})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_loginout:
@@ -88,6 +89,15 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.ll_wodeshouyi:
                 ShouyiActivity.actionStart(mContext);
+                break;
+            case R.id.ll_wodeqianbao:
+                MyQianBaoActivity.actionStart(HomeActivity.this);
+                break;
+            case R.id.ll_fenzhangjilu:
+                FenZhangJiLuActivity.actionStart(HomeActivity.this,"1");
+                break;
+            case R.id.ll_tixianjilu:
+                FenZhangJiLuActivity.actionStart(HomeActivity.this,"3");
                 break;
         }
     }
