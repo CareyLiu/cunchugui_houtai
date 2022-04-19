@@ -101,7 +101,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:enabled="false"
+        android:enabled="true"
         android:background="#4F94F1"
         android:text="下一步"
         android:textColor="@color/white" />

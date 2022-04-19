@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,9 @@ import com.cunchugui.houtai.utils.user.UserManager;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +43,8 @@ public class FenZhangJiLuActivity extends BaseActivity {
 
     String pay_cost_type = "";
     int page_number = 0;
+    @BindView(R.id.smartRefreshLayout)
+    SmartRefreshLayout smartRefreshLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,9 +56,36 @@ public class FenZhangJiLuActivity extends BaseActivity {
         rlvList.setLayoutManager(linearLayoutManager);
         rlvList.setAdapter(fenZhangJiLuAdapter);
 
+
         pay_cost_type = getIntent().getStringExtra("pay_cost_type");
 
         getNet();
+
+        if (getIntent().getStringExtra("pay_cost_type").equals("1")) {
+            tv_title.setText("收入记录");
+
+        } else if (getIntent().getStringExtra("pay_cost_type").equals("3")) {
+
+            tv_title.setText("提现记录");
+        }
+
+        smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                page_number = page_number + 1;
+                getNet();
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+                page_number = 0;
+                getNet();
+            }
+        });
+
+        smartRefreshLayout.setEnableRefresh(true);
+        smartRefreshLayout.setEnableLoadMore(true);
     }
 
 
@@ -70,7 +103,7 @@ public class FenZhangJiLuActivity extends BaseActivity {
     public void getNet() {
         //访问网络获取数据 下面的列表数据
         Map<String, String> map = new HashMap<>();
-        map.put("code", "110009");
+        map.put("code", "110047");
         map.put("key", Urls.key);
         map.put("token", UserManager.getManager(FenZhangJiLuActivity.this).getAppToken());
 
@@ -84,10 +117,28 @@ public class FenZhangJiLuActivity extends BaseActivity {
                 .execute(new JsonCallback<AppResponse<FenZhangModel.DataBean>>() {
                     @Override
                     public void onSuccess(Response<AppResponse<FenZhangModel.DataBean>> response) {
-                        mDatas = response.body().data;
-                        fenZhangJiLuAdapter.setNewData(mDatas);
                         // fenZhangJiLuAdapter.notifyDataSetChanged();
                         //分账记录
+                        if (mDatas.size() == 0) {
+                            View viewEmpty = View.inflate(mContext, R.layout.layout_fenzhang_tixian, null);
+                            fenZhangJiLuAdapter.setEmptyView(viewEmpty);
+                        } else {
+                            smartRefreshLayout.finishRefresh();
+                        }
+                        mDatas.addAll(response.body().data);
+
+                        if (page_number == 0) {
+                            fenZhangJiLuAdapter.setNewData(mDatas);
+                        } else {
+                            fenZhangJiLuAdapter.notifyDataSetChanged();
+                        }
+
+                        if (response.body().next.equals("1")) {
+                            smartRefreshLayout.setEnableLoadMore(true);
+                        } else {
+                            smartRefreshLayout.setEnableLoadMore(false);
+                        }
+
                     }
                 });
 
@@ -108,7 +159,7 @@ public class FenZhangJiLuActivity extends BaseActivity {
     @Override
     protected void initToolbar() {
         super.initToolbar();
-        tv_title.setText("分账记录");
+
         tv_title.setTextSize(17);
         tv_title.setTextColor(getResources().getColor(R.color.black));
         mToolbar.setNavigationIcon(R.mipmap.backbutton);
@@ -122,7 +173,7 @@ public class FenZhangJiLuActivity extends BaseActivity {
 
     /**
      * @param context 上下文
-     * @param str     0.分账记录 1.提现记录
+     * @param str     1.分账记录 3.提现记录
      */
     public static void actionStart(Context context, String str) {
         Intent intent = new Intent(context, FenZhangJiLuActivity.class);

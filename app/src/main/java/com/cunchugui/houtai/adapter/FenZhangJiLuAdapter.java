@@ -26,8 +26,6 @@ public class FenZhangJiLuAdapter extends BaseQuickAdapter<FenZhangModel.DataBean
         } else if (item.pay_user_state_name.equals("2")) {
             // TODO: 2022-04-03 提现成功和结束是一个事么
             helper.setText(R.id.tv_jiaoyizhuangtai, "提现成功");
-        } else if (item.pay_user_state_name.equals("3")) {
-
         }
 
 

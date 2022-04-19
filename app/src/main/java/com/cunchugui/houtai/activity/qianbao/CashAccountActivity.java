@@ -2,6 +2,7 @@ package com.cunchugui.houtai.activity.qianbao;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -68,13 +69,13 @@ public class CashAccountActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0 && !etName.getText().toString().equals("")) {
-                    btnSave.setEnabled(true);
-                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app));
-                } else {
-                    btnSave.setEnabled(false);
-                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app_disabled));
-                }
+//                if (s.length() > 0 && !etName.getText().toString().equals("")) {
+//                    btnSave.setEnabled(true);
+//                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app));
+//                } else {
+//                    btnSave.setEnabled(false);
+//                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app_disabled));
+//                }
             }
 
             @Override
@@ -90,13 +91,13 @@ public class CashAccountActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0 && !etAccount.getText().toString().equals("")) {
-                    btnSave.setEnabled(true);
-                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app));
-                } else {
-                    btnSave.setEnabled(false);
-                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app_disabled));
-                }
+//                if (s.length() > 0 && !etAccount.getText().toString().equals("")) {
+//                    btnSave.setEnabled(true);
+//                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app));
+//                } else {
+//                    btnSave.setEnabled(false);
+//                    btnSave.setBackground(getResources().getDrawable(R.drawable.bg_shape_app_disabled));
+//                }
             }
 
             @Override
@@ -111,6 +112,14 @@ public class CashAccountActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
+                if (TextUtils.isEmpty(etName.getText().toString())) {
+                    UIHelper.ToastMessage(mContext, "请填写提现账号姓名");
+                    return;
+                }
+                if (TextUtils.isEmpty(etAccount.getText().toString())) {
+                    UIHelper.ToastMessage(mContext, "请填写银行账号");
+                    return;
+                }
                 requestData();
                 break;
         }
@@ -135,9 +144,14 @@ public class CashAccountActivity extends BaseActivity {
                     @Override
                     public void onSuccess(Response<AppResponse> response) {
                         // AlertUtil.t(getApplicationContext(), response.body().msg);
+                        if (response.body().msg_code.equals("0001")) {
+                            UIHelper.ToastMessage(mContext, response.body().msg);
+                        } else {
                             UIHelper.ToastMessage(CashAccountActivity.this, "保存成功");
-                            PreferenceHelper.getInstance(CashAccountActivity.this).putString(ConstanceValue.CUNCHUBIND_ALIPAY, "1");
+                            PreferenceHelper.getInstance(CashAccountActivity.this).putString(ConstanceValue.CUNCHU_YINHANGKAHAO, "1");
                             finish();
+                        }
+
                         //  AppManager.getAppManager().finishActivity(PhoneCheckActivity.class);
                         //AppManager.getAppManager().finishActivity();
 
@@ -145,7 +159,9 @@ public class CashAccountActivity extends BaseActivity {
 
                     @Override
                     public void onError(Response<AppResponse> response) {
-                        AlertUtil.t(getApplication(), response.getException().getMessage());
+                        //AlertUtil.t(getApplication(), response.getException().getMessage());
+
+                        UIHelper.ToastMessage(mContext, response.getException().getMessage());
 
                     }
                 });

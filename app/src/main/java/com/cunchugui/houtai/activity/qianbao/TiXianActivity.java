@@ -74,17 +74,36 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
     TextView tvZhifufangshi;
     @BindView(R.id.user_name)
     TextView userName;
+    @BindView(R.id.tv_yinhangkahao)
+    TextView tvYinhangkahao;
+    @BindView(R.id.tv_tixian1)
+    TextView tvTixian1;
 
     private String moneyUse;
     BigDecimal zhanShiJinE;
     private String puTongUserOrDaiLiShang = "0";//0 普通用户 1 代理商
     private String weiXinOrZhiFuBao = "1";//1 微信 2 支付宝
 
+    private String yinHangKaHao;
+    private String minMoney;
+    private String maxMoney;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         moneyUse = getIntent().getStringExtra("money_use");
+        yinHangKaHao = getIntent().getStringExtra("yinHangKaHao");
         etText.setHint("当前可提现金额 " + moneyUse);
+        tvYinhangkahao.setText("银行卡号:" + yinHangKaHao);
+        minMoney = getIntent().getStringExtra("minMoney");
+        maxMoney = getIntent().getStringExtra("maxMoney");
+        if (TextUtils.isEmpty(minMoney)) {
+            minMoney = "10";
+        }
+        if (TextUtils.isEmpty(maxMoney)) {
+            maxMoney = "10000";
+        }
+        showShui.setText("单日最大提现金额" + maxMoney + "元," + "单日最少提现金额" + minMoney + "元");
 //        puTongUserOrDaiLiShang = getIntent().getStringExtra("puTongUserOrDaiLiShang");
 //        weiXinOrZhiFuBao = getIntent().getStringExtra("weixinOrZhiFubao");
 
@@ -97,7 +116,7 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
 //
 //        }
 
-        tvTixian.setOnClickListener(new View.OnClickListener() {
+        tvTixian1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(etText.getText().toString())) {
@@ -105,9 +124,14 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                     return;
                 }
 
+                if (zhanShiJinE.compareTo(new BigDecimal(minMoney)) == 1) {
+                    UIHelper.ToastMessage(TiXianActivity.this, "提现金额不能小于1元");
+                    etText.setText("");
+                    return;
+                }
 
-                if (zhanShiJinE.compareTo(new BigDecimal("9")) == -1) {
-                    UIHelper.ToastMessage(TiXianActivity.this, "提现金额需大于10元");
+                if (zhanShiJinE.compareTo(new BigDecimal(maxMoney)) == 1) {
+                    UIHelper.ToastMessage(TiXianActivity.this, "提现金额不能大于1万元");
                     etText.setText("");
                     return;
                 }
@@ -125,7 +149,7 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
 
                 } else if (str.equals("2")) {
 
-                    startActivity(new Intent(TiXianActivity.this, PhoneCheckActivity.class).putExtra("mod_id", "0113"));
+                    startActivity(new Intent(TiXianActivity.this, PhoneCheckActivity.class).putExtra("mod_id", "0376"));
                 }
 
 
@@ -184,15 +208,15 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                 }
 
 
-                showShui.setText("手续费： ¥" + kouChuJinE.toString());
+                // showShui.setText("手续费： ¥" + kouChuJinE.toString()+"\n"+"515151");
 
 
-                tvTixian.setText("提现 " + zhanShiJinE + "元");
+                //tvTixian.setText("提现 " + tiXianJinE.toString() + "元");
 
             }
         });
 
-        requestData();
+        //requestData();
     }
 
     public void requestData() {
@@ -250,7 +274,7 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
         Map<String, String> map = new HashMap<>();
         map.put("key", Urls.key);
         map.put("token", UserManager.getManager(TiXianActivity.this).getAppToken());
-        map.put("code", "110045");
+        map.put("code", "110046");
         map.put("pay_pwd", pwd);
         map.put("money", etText.getText().toString());
 
@@ -305,13 +329,16 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
 
     /**
      * 用于其他Activty跳转到该Activity
-     *
-     * @param context weixinorzhifubao 1 支付宝 2 微信
+     * 提现最大金额和最小金额
      */
-    public static void actionStart(Context context, String money_use) {
+    public static void actionStart(Context context, String money_use, String yinHangKaHao, String minMoney, String maxMoney) {
         Intent intent = new Intent(context, TiXianActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("money_use", money_use);
+        intent.putExtra("yinHangKaHao", yinHangKaHao);
+        intent.putExtra("minMoney", minMoney);
+        intent.putExtra("maxMoney", maxMoney);
         context.startActivity(intent);
     }
 

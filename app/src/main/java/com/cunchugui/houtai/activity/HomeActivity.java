@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 
 import com.cunchugui.houtai.R;
 import com.cunchugui.houtai.activity.qianbao.MyQianBaoActivity;
+import com.cunchugui.houtai.activity.qianbao.PhoneCheckActivity;
+import com.cunchugui.houtai.activity.qianbao.RevisePayActivity;
 import com.cunchugui.houtai.app.AppManager;
 import com.cunchugui.houtai.app.base.BaseActivity;
 import com.cunchugui.houtai.dialog.TishiDialog;
@@ -92,12 +94,14 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.ll_wodeqianbao:
                 MyQianBaoActivity.actionStart(HomeActivity.this);
+               // startActivity(new Intent(HomeActivity.this, RevisePayActivity.class).putExtra("sms_id", "").putExtra("sms_code", ""));
+
                 break;
             case R.id.ll_fenzhangjilu:
-                FenZhangJiLuActivity.actionStart(HomeActivity.this,"1");
+                FenZhangJiLuActivity.actionStart(HomeActivity.this, "1");
                 break;
             case R.id.ll_tixianjilu:
-                FenZhangJiLuActivity.actionStart(HomeActivity.this,"3");
+                FenZhangJiLuActivity.actionStart(HomeActivity.this, "3");
                 break;
         }
     }

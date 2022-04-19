@@ -52,9 +52,13 @@ public class MyQianBaoModel {
 
         public String is_set_ppwd;//是否设置过支付密码：1.已设置 2.未设置
         public String is_set_bcnumber;//是否设置过提现银行卡号：1.已设置 2.未设置
+        public String bank_card_number;//银行卡号
         public String phone;//手机号
         public String user_phone;//手机号带星
         //public String money_use;//可用余额
+
+        public String is_min_money;//最小金额
+        public String is_max_money;//最大金额
 
 
         public String getRed_money_lock() {

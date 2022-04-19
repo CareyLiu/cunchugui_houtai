@@ -86,8 +86,6 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-         phone = "18249030297";
-         pwd = "18249030297";
 
         Map<String, String> map = new HashMap<>();
         map.put("code", "00078");

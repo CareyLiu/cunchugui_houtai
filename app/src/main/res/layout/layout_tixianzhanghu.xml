@@ -5,6 +5,26 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*"
+            android:textColor="@color/color_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工商银行，农业银行，建设银行，中国银行，交通银行，招商银行，邮储银行，民生银行，平安银行，中信银行，浦发银行，兴业银行，广大银行，广发银行，华夏银行，宁波银行，北京银行，上海银行，南京银行"
+            android:textSize="15sp" />
+    </LinearLayout>
+
 
     <LinearLayout
 
@@ -18,37 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="账户："
-                android:textColor="#ff333333"
-                android:textSize="13sp" />
-
-
-            <EditText
-                android:inputType="number"
-                android:id="@+id/et_account"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:background="@drawable/biankuang"
-                android:hint="请输入银行卡号"
-                android:paddingLeft="10dp"
-                android:textSize="13sp">
-
-            </EditText>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,6 +62,43 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账户："
+                android:textColor="#ff333333"
+                android:textSize="13sp" />
+
+
+            <EditText
+                android:id="@+id/et_account"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:background="@drawable/biankuang"
+                android:hint="请输入银行卡号"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textSize="13sp">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="注意事项：只能添加储蓄卡，不能添加信用卡"
+            android:textColor="@color/color_red" />
 
     </LinearLayout>
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cunchugui.houtai.R;
+import com.cunchugui.houtai.activity.BaoyuejiluActivity;
 import com.cunchugui.houtai.activity.LoginActivity;
 import com.cunchugui.houtai.adapter.MyQianBaoAdapter;
 import com.cunchugui.houtai.app.UIHelper;
@@ -42,8 +43,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-import static com.cunchugui.houtai.config.ConstanceValue.CUNCHUBIND_ALIPAY;
-import static com.cunchugui.houtai.config.ConstanceValue.CUNCHUBIND_WEIXINPAY;
+
 import static com.cunchugui.houtai.config.net.Urls.HOME_PICTURE_HOME;
 
 
@@ -65,13 +65,15 @@ public class MyQianBaoActivity extends BaseActivity {
     TextView tvShezhizhifumima;
     @BindView(R.id.rl_zhifumima)
     RelativeLayout rlZhifumima;
-
+    public String bank_card_number;
+    String minMoney;
+    String maxMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        rlvList.setLayoutManager(new LinearLayoutManager(MyQianBaoActivity.this));
-          myQianBaoAdapter = new MyQianBaoAdapter(R.layout.item_my_qianbao, stringList);
+        myQianBaoAdapter = new MyQianBaoAdapter(R.layout.item_my_qianbao, stringList);
 //        rlvList.setAdapter(myQianBaoAdapter);
 //        myQianBaoAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
 //            @Override
@@ -88,7 +90,7 @@ public class MyQianBaoActivity extends BaseActivity {
 //            }
 //        });
 
-        getNet();
+        //getNet();
         ivTixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +106,9 @@ public class MyQianBaoActivity extends BaseActivity {
                     //  showWeiXinOrZhiFuBaoSelect();
 
                     if (yinHangKaHao.equals("1")) {
-                        TiXianActivity.actionStart(mContext, response.body().data.get(0).getMoney_use());
+                        TiXianActivity.actionStart(MyQianBaoActivity.this, response.body().data.get(0).getMoney_use(), bank_card_number, minMoney, maxMoney);
                     } else {
-                        PhoneCheckActivity.actionStart(mContext, "0111");
+                        PhoneCheckActivity.actionStart(mContext, "0375");
                     }
 
                 } else {
@@ -118,7 +120,7 @@ public class MyQianBaoActivity extends BaseActivity {
         rlYinhangkahao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhoneCheckActivity.actionStart(mContext, "0111");
+                PhoneCheckActivity.actionStart(mContext, "0375");
 
             }
         });
@@ -126,24 +128,11 @@ public class MyQianBaoActivity extends BaseActivity {
         rlZhifumima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhoneCheckActivity.actionStart(mContext, "0113");
+                PhoneCheckActivity.actionStart(mContext, "0376");
             }
         });
 
-        PreferenceHelper.getInstance(mContext).putString("user_phone", "18249030297");
-    }
-
-
-    public void shiFouTiXianGuo() {
-        String str = PreferenceHelper.getInstance(mContext).getString(ConstanceValue.CUNCHU_YINHANGKAHAO, "");
-
-        //是否设置过提现银行卡号：1.已设置 2.未设置
-        if (str.equals("1")) {
-
-        } else if (str.equals("2")) {
-
-        }
-
+        // PreferenceHelper.getInstance(mContext).putString("user_phone", "18249030297");
     }
 
     @Override
@@ -154,6 +143,7 @@ public class MyQianBaoActivity extends BaseActivity {
 
     String zhiFuMima;
     String yinHangKaHao;
+
 
     @Override
     public int getContentViewResId() {
@@ -185,20 +175,25 @@ public class MyQianBaoActivity extends BaseActivity {
                          * user_phone	手机号带星
                          * money_use	可用余额
                          */
-
+                        bank_card_number = response.body().data.get(0).bank_card_number;
                         zhiFuMima = response.body().data.get(0).is_set_ppwd;
                         yinHangKaHao = response.body().data.get(0).is_set_bcnumber;
+                        minMoney = response.body().data.get(0).is_min_money;
+                        maxMoney = response.body().data.get(0).is_max_money;
 
                         if (zhiFuMima.equals("1")) {
                             tvShezhizhifumima.setText("修改支付密码");
+
                         } else if (zhiFuMima.equals("2")) {
                             tvShezhizhifumima.setText("设置支付密码");
+
                         }
 
+
                         if (yinHangKaHao.equals("1")) {
-                            tvShezhiyinhangkahao.setText("设置银行卡号");
+                            tvShezhiyinhangkahao.setText("修改银行卡号(" + bank_card_number + ")");
                         } else if (yinHangKaHao.equals("2")) {
-                            tvShezhiyinhangkahao.setText("修改银行卡号");
+                            tvShezhiyinhangkahao.setText("设置银行卡号");
                         }
 
 
@@ -237,8 +232,12 @@ public class MyQianBaoActivity extends BaseActivity {
      * @param context
      */
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, MyQianBaoActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        Intent intent = new Intent(context, MyQianBaoActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent);
+        Intent intent = new Intent();
+        intent.setClass(context, MyQianBaoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 

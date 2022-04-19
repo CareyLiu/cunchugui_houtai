@@ -69,8 +69,8 @@ public class PhoneCheckActivity extends BaseActivity {
         StatusBarUtil.setLightMode(this);
 
         TextView tvShouJiYanZheng = findViewById(R.id.tv_shoujiyanzheng);
-        if (getIntent().getStringExtra("mod_id").equals("0113")) {
-            tvShouJiYanZheng.setText("支付密码");
+        if (getIntent().getStringExtra("mod_id").equals("0376")) {
+            tv_title.setText("设置支付密码");
         }
         if (getIntent().getStringExtra("weixinOrZhiFuBao") != null) {
             weixinOrZhiFuBao = getIntent().getStringExtra("weixinOrZhiFuBao");
@@ -108,7 +108,7 @@ public class PhoneCheckActivity extends BaseActivity {
 
             }
         });
-
+        //startActivity(new Intent(PhoneCheckActivity.this, RevisePayActivity.class).putExtra("sms_id", smsId).putExtra("sms_code", etCode.getText().toString()));
     }
 
     @OnClick({R.id.rl_back, R.id.tv_get_code, R.id.btn_submit})
@@ -181,31 +181,35 @@ public class PhoneCheckActivity extends BaseActivity {
                     public void onSuccess(Response<AppResponse<Message.DataBean>> response) {
                         //AlertUtil.t(PhoneCheckActivity.this, response.body().msg);
                         switch (getIntent().getStringExtra("mod_id")) {
-                            case "0113"://修改支付密码
+                            case "0376"://修改支付密码
                                 startActivity(new Intent(PhoneCheckActivity.this, RevisePayActivity.class).putExtra("sms_id", smsId).putExtra("sms_code", etCode.getText().toString()));
-                                PreferenceHelper.getInstance(PhoneCheckActivity.this).putString(ConstanceValue.CUNCHU_ZHIFUMIMA, "1");
+
                                 finish();
                                 break;
                             case "0112"://修改登录密码
                                 finish();
                                 startActivity(new Intent(PhoneCheckActivity.this, ReviseLoginActivity.class).putExtra("sms_id", smsId).putExtra("sms_code", etCode.getText().toString()));
                                 break;
-                            case "0111"://修改提现账号
-                                if (weixinOrZhiFuBao.equals("1")) {
-                                    startActivity(new Intent(PhoneCheckActivity.this, CashAccountActivity.class).putExtra("sms_id", smsId)
-                                            .putExtra("sms_code", etCode.getText().toString()).putExtra("weixinOrZhiFuBao", weixinOrZhiFuBao));
-                                } else if (weixinOrZhiFuBao.equals("2")) {
+                            case "0375"://修改提现账号
 
-                                    //保存 微信回调使用
-                                    PreferenceHelper.getInstance(mContext).putString(ConstanceValue.SMS_ID, smsId);
-                                    PreferenceHelper.getInstance(mContext).putString(ConstanceValue.SMS_CODE, etCode.getText().toString());
-                                    IWXAPI api;
-                                    api = WXAPIFactory.createWXAPI(mContext, ConstanceValue.APP_ID);
-                                    SendAuth.Req req = new SendAuth.Req();
-                                    req.scope = "snsapi_userinfo";
-                                    req.state = "wechat_sdk_demo_test";
-                                    api.sendReq(req);
-                                }
+                                startActivity(new Intent(PhoneCheckActivity.this, CashAccountActivity.class).putExtra("sms_id", smsId)
+                                        .putExtra("sms_code", etCode.getText().toString()).putExtra("weixinOrZhiFuBao", weixinOrZhiFuBao));
+
+//                                if (weixinOrZhiFuBao.equals("1")) {
+//                                    startActivity(new Intent(PhoneCheckActivity.this, CashAccountActivity.class).putExtra("sms_id", smsId)
+//                                            .putExtra("sms_code", etCode.getText().toString()).putExtra("weixinOrZhiFuBao", weixinOrZhiFuBao));
+//                                } else if (weixinOrZhiFuBao.equals("2")) {
+//
+//                                    //保存 微信回调使用
+//                                    PreferenceHelper.getInstance(mContext).putString(ConstanceValue.SMS_ID, smsId);
+//                                    PreferenceHelper.getInstance(mContext).putString(ConstanceValue.SMS_CODE, etCode.getText().toString());
+//                                    IWXAPI api;
+//                                    api = WXAPIFactory.createWXAPI(mContext, ConstanceValue.APP_ID);
+//                                    SendAuth.Req req = new SendAuth.Req();
+//                                    req.scope = "snsapi_userinfo";
+//                                    req.state = "wechat_sdk_demo_test";
+//                                    api.sendReq(req);
+//                                }
 
                                 finish();
                                 break;

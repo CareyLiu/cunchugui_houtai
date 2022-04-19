@@ -265,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20pt"
                         android:includeFontPadding="false"
-                        android:text="分账记录"
+                        android:text="收入记录"
                         android:textColor="@color/color_2"
                         android:textSize="29pt" />
                 </LinearLayout>
