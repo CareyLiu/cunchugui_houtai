@@ -187,6 +187,30 @@
                     android:layout_weight="1" />
 
                 <LinearLayout
+                    android:id="@+id/ll_tixianjilu"
+                    android:layout_width="317pt"
+                    android:layout_height="282pt"
+                    android:background="@drawable/bg_white_shadow"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="120pt"
+                        android:layout_height="120pt"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/tixian" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20pt"
+                        android:includeFontPadding="false"
+                        android:text="提现记录"
+                        android:textColor="@color/color_2"
+                        android:textSize="29pt" />
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/ll_wodeshouyi"
                     android:layout_width="317pt"
                     android:layout_height="282pt"
@@ -277,29 +301,7 @@
                 android:layout_marginHorizontal="29pt"
                 android:layout_marginTop="29pt">
 
-                <LinearLayout
-                    android:id="@+id/ll_tixianjilu"
-                    android:layout_width="317pt"
-                    android:layout_height="282pt"
-                    android:background="@drawable/bg_white_shadow"
-                    android:gravity="center"
-                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="120pt"
-                        android:layout_height="120pt"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/tixian" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20pt"
-                        android:includeFontPadding="false"
-                        android:text="提现记录"
-                        android:textColor="@color/color_2"
-                        android:textSize="29pt" />
-                </LinearLayout>
 
                 <View
                     android:layout_width="0dp"
