@@ -41,7 +41,7 @@ public class FenZhangJiLuActivity extends BaseActivity {
     FenZhangJiLuAdapter fenZhangJiLuAdapter;
     List<FenZhangModel.DataBean> mDatas = new ArrayList<>();
 
-    String pay_cost_type = "";
+    public static String pay_cost_type = "";
     int page_number = 0;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;

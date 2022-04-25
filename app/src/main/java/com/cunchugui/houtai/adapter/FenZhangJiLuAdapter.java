@@ -9,6 +9,8 @@ import com.cunchugui.houtai.model.FenZhangModel;
 
 import java.util.List;
 
+import static com.cunchugui.houtai.activity.FenZhangJiLuActivity.pay_cost_type;
+
 public class FenZhangJiLuAdapter extends BaseQuickAdapter<FenZhangModel.DataBean, BaseViewHolder> {
     public FenZhangJiLuAdapter(int layoutResId, @Nullable List<FenZhangModel.DataBean> data) {
         super(layoutResId, data);
@@ -21,11 +23,20 @@ public class FenZhangJiLuAdapter extends BaseQuickAdapter<FenZhangModel.DataBean
         helper.setText(R.id.tv_jine, item.money);
         helper.setText(R.id.tv_time, item.create_time);
         //交易状态：1.进行中 2.完成 3.结束
-        if (item.pay_user_state_name.equals("1")) {
-            helper.setText(R.id.tv_jiaoyizhuangtai, "提现中");
-        } else if (item.pay_user_state_name.equals("2")) {
+        if (item.pay_user_state.equals("1")) {
+            if (pay_cost_type.equals("1")){
+                helper.setText(R.id.tv_jiaoyizhuangtai, "分账中");
+            }else {
+                helper.setText(R.id.tv_jiaoyizhuangtai, "提现中");
+            }
+
+        } else if (item.pay_user_state.equals("2")) {
             // TODO: 2022-04-03 提现成功和结束是一个事么
-            helper.setText(R.id.tv_jiaoyizhuangtai, "提现成功");
+            if (pay_cost_type.equals("1")){
+                helper.setText(R.id.tv_jiaoyizhuangtai, "分账成功");
+            }else {
+                helper.setText(R.id.tv_jiaoyizhuangtai, "提现成功");
+            }
         }
 
 
