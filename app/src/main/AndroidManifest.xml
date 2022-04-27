@@ -225,6 +225,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"
             tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".activity.ShouYiNewActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            tools:ignore="LockedOrientationActivity" />
 
 
 

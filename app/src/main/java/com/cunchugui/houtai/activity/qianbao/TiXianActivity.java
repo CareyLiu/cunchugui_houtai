@@ -124,8 +124,8 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                     return;
                 }
 
-                if (zhanShiJinE.compareTo(new BigDecimal(minMoney)) == 1) {
-                    UIHelper.ToastMessage(TiXianActivity.this, "提现金额不能小于1元");
+                if (zhanShiJinE.compareTo(new BigDecimal(minMoney)) == -1) {
+                    UIHelper.ToastMessage(TiXianActivity.this, "单日最少提现金额" + minMoney + "元");
                     etText.setText("");
                     return;
                 }
@@ -135,6 +135,8 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                     etText.setText("");
                     return;
                 }
+
+
 
 
                 String str = PreferenceHelper.getInstance(TiXianActivity.this).getString(CUNCHU_ZHIFUMIMA, "1");
@@ -181,6 +183,11 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                 BigDecimal tiXianJinE = new BigDecimal(s.toString());
 
 
+                zhanShiJinE = new BigDecimal(s.toString());
+                if (zhanShiJinE.compareTo(new BigDecimal(moneyUse)) == 1) {
+                    etText.setText(moneyUse);
+                    etText.setSelection(etText.getText().length());
+                }
                 BigDecimal shuiLv = new BigDecimal("0.0015");
 
                 BigDecimal kouChuJinE = tiXianJinE.multiply(shuiLv);
@@ -192,20 +199,20 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                 BigDecimal BigDecimal25 = new BigDecimal("25");
 
 
-                if (kouChuJinE.compareTo(BigDecimal25) == 1) {
-                    zhanShiJinE = tiXianJinE.subtract(BigDecimal25);
-                    kouChuJinE = new BigDecimal("25");
-                } else {
-
-                    if (kouChuJinE.compareTo(twoBigDecimal) == 1) {
-                        zhanShiJinE = tiXianJinE.subtract(kouChuJinE);
-                    } else {
-                        zhanShiJinE = tiXianJinE.subtract(twoBigDecimal);
-                        kouChuJinE = new BigDecimal("2");
-
-                    }
-
-                }
+//                if (kouChuJinE.compareTo(BigDecimal25) == 1) {
+//                    zhanShiJinE = tiXianJinE.subtract(BigDecimal25);
+//                    kouChuJinE = new BigDecimal("25");
+//                } else {
+//
+//                    if (kouChuJinE.compareTo(twoBigDecimal) == 1) {
+//                        zhanShiJinE = tiXianJinE.subtract(kouChuJinE);
+//                    } else {
+//                        zhanShiJinE = tiXianJinE.subtract(twoBigDecimal);
+//                        kouChuJinE = new BigDecimal("2");
+//
+//                    }
+//
+//                }
 
 
                 // showShui.setText("手续费： ¥" + kouChuJinE.toString()+"\n"+"515151");
@@ -285,19 +292,14 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                 .execute(new JsonCallback<AppResponse<Object>>() {
                     @Override
                     public void onSuccess(Response<AppResponse<Object>> response) {
-                        UIHelper.ToastMessage(TiXianActivity.this, "提现成功,系统将于1-2小时之内到账");
-                        finish();
-                        if (puTongUserOrDaiLiShang.equals("0")) {
-                            //  map.put("code", "04338");
+
+                        if (response.body().msg_code.equals("0007")) {
+                            UIHelper.ToastMessage(mContext, response.body().msg);
                         } else {
-                            // map.put("code", "04778");
-                            //1.发通知 成功
-                            Notice n = new Notice();
-                            n.type = ConstanceValue.MSG_DAILISHANG_TIXIAN;
-//                            n.content = message.toString();
-                            n.content = "1";
-                            RxBus.getDefault().sendRx(n);
+                            UIHelper.ToastMessage(TiXianActivity.this, "提现成功,系统将于1-2小时之内到账");
+                            finish();
                         }
+
                     }
 
                     @Override
@@ -306,23 +308,7 @@ public class TiXianActivity extends BaseActivity implements PayPassWordInter {
                         String str = response.getException().getMessage();
                         //    Log.i("cuifahuo", str);
                         //finish();
-                        String[] str1 = str.split("：");
-
-                        if (str1.length == 3) {
-                            UIHelper.ToastMessage(mContext, str1[2]);
-                        }
-
-                        if (puTongUserOrDaiLiShang.equals("0")) {
-                            //  map.put("code", "04338");
-                        } else {
-                            // map.put("code", "04778");
-                            //1.发通知 失败
-                            Notice n = new Notice();
-                            n.type = ConstanceValue.MSG_DAILISHANG_TIXIAN;
-//                            n.content = message.toString();
-                            n.content = "0";
-                            RxBus.getDefault().sendRx(n);
-                        }
+                        UIHelper.ToastMessage(mContext, response.getException().getMessage());
                     }
                 });
     }

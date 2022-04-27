@@ -90,7 +90,7 @@ public class HomeActivity extends BaseActivity {
                 BaoyuejiluActivity.actionStart(mContext);
                 break;
             case R.id.ll_wodeshouyi:
-                ShouyiActivity.actionStart(mContext);
+                ShouYiNewActivity.actionStart(mContext);
                 break;
             case R.id.ll_wodeqianbao:
                 MyQianBaoActivity.actionStart(HomeActivity.this);
